@@ -6,7 +6,12 @@ function QrImg({ data }) {
   return (
     <div className="flex-shrink-0 snap-center items-center justify-center relative">
       <img src={data.qrUrl} alt="qr" className="w-[277px] h-[428px] " />
-      <a href={getWhatsAppUrl({ url: data.qrUrl })}>
+      <a
+        href={
+          `whatsapp://send?text=${encodeURIComponent("QR")}&amp;` +
+          `url=${encodeURIComponent(data.qrUrl)}`
+        }
+      >
         <img
           src={WA}
           alt="wa-icon"
