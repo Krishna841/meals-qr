@@ -11,7 +11,7 @@ import moment from "moment";
 function App() {
   const [clickLeft, setClickLeft] = useState(true);
   const [clickRight, setClickRight] = useState(false);
-  const [initial, setInitial] = useState(new Date());
+  const [initial, setInitial] = useState("2024-04-08");
   const [final, setFinal] = useState(new Date());
   const [type, setType] = useState("");
   const [start, setStart] = useState(false);
@@ -89,7 +89,7 @@ function App() {
               {start ? (
                 <Calendar
                   onChange={setInitial}
-                  minDate={new Date()}
+                  // minDate={new Date()}
                   value={initial}
                 />
               ) : (
@@ -106,7 +106,7 @@ function App() {
               {end ? (
                 <Calendar
                   onChange={setFinal}
-                  minDate={new Date()}
+                  // minDate={new Date()}
                   value={final}
                 />
               ) : (
