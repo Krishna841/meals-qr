@@ -43,7 +43,7 @@ function EPassPage() {
     } catch (error) {
       console.log(error);
     }
-  }, [initial, final, passId, navigate]);
+  }, [initial, final, passId]);
 
   return (
     <div className="bg-[#efede7] h-[100vh]">
