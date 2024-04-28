@@ -1,6 +1,5 @@
 import React from "react";
 import WA from "../assets/wa-icon.svg";
-import { getWhatsAppUrl } from "@phntms/react-share";
 
 function QrImg({ data }) {
   return (
