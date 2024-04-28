@@ -6,7 +6,7 @@ import cal from "../assets/calendar.svg";
 import Calendar from "react-calendar";
 import moment from "moment";
 
-function Future({ setType, type }) {
+function Future({ setType, type, passId }) {
   const [initial, setInitial] = useState(new Date());
   const [final, setFinal] = useState(new Date());
   const [start, setStart] = useState(false);
@@ -21,7 +21,7 @@ function Future({ setType, type }) {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        param: "4c788c407d64217d89a7d934abe356cb",
+        param: passId,
         startDate: moment(initial).format("YYYY-MM-DD"),
         endDate: moment(final).format("YYYY-MM-DD"),
       }),
@@ -30,7 +30,7 @@ function Future({ setType, type }) {
       .then((data) => {
         setData(data.data);
       });
-  }, [initial, final]);
+  }, [initial, final, passId]);
 
   return (
     <>

@@ -3,7 +3,7 @@ import Meals from "./Meals";
 import QrImg from "./QrImg";
 import moment from "moment";
 
-function Today({ setType, type }) {
+function Today({ setType, type, passId }) {
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -14,11 +14,9 @@ function Today({ setType, type }) {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        param: "4c788c407d64217d89a7d934abe356cb",
+        param: passId,
         startDate: moment(new Date()).format("YYYY-MM-DD"),
         endDate: moment(new Date()).format("YYYY-MM-DD"),
-        // startDate: "2024-04-22",
-        // endDate: "2024-04-22",
       }),
     })
       .then((res) => res.json())
@@ -26,7 +24,7 @@ function Today({ setType, type }) {
         console.log(result);
         setData(result.data);
       });
-  }, []);
+  }, [passId]);
 
   return (
     <>
