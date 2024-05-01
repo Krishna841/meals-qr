@@ -1,15 +1,22 @@
 import { WhatsappShareButton } from "react-share";
 import WA from "../assets/wa-icon.svg";
 
-function QrImg({ data }) {
+function QrImg({ data, setLoadingImage, loadingImage }) {
   return (
     <div className="flex-shrink-0 snap-center items-center justify-center relative">
-      <img src={data.qrUrl} alt="qr" className="w-[277px] h-[428px] " />
+      <img
+        src={data.qrUrl}
+        alt="qr"
+        className="w-[277px] h-[428px]"
+        onLoad={() => setLoadingImage(false)}
+      />
       <WhatsappShareButton url={data.qrUrl}>
         <img
           src={WA}
           alt="wa-icon"
-          className="absolute right-20 bottom-28 h-[30px] w-[30px] rounded-md"
+          className={`absolute right-20 bottom-[88px] h-[30px] w-[30px] rounded-md ${
+            loadingImage ? "hidden" : ""
+          }`}
         />
       </WhatsappShareButton>
     </div>

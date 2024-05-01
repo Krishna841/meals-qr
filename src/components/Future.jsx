@@ -5,6 +5,7 @@ import arr from "../assets/arrow.svg";
 import cal from "../assets/calendar.svg";
 import Calendar from "react-calendar";
 import moment from "moment";
+import { BarLoader } from "react-spinners";
 
 function Future({ setType, type, passId }) {
   const [initial, setInitial] = useState(new Date());
@@ -12,8 +13,11 @@ function Future({ setType, type, passId }) {
   const [start, setStart] = useState(false);
   const [end, setEnd] = useState(false);
   const [data, setData] = useState();
+  const [loading, setLoading] = useState(false);
+  const [loadingImage, setLoadingImage] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     fetch("https://pos-api.effortsnode.srmd.org/v1/items/getMyPasses", {
       method: "POST",
       headers: {
@@ -29,7 +33,9 @@ function Future({ setType, type, passId }) {
       .then((res) => res.json())
       .then((data) => {
         setData(data.data);
-      });
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, [initial, final, passId]);
 
   return (
@@ -65,16 +71,31 @@ function Future({ setType, type, passId }) {
           )}
         </div>
       </div>
-      <div className="flex items-center justify-start mt-5 overflow-x-scroll no-scrollbar px-5 gap-5">
-        {data && Object.keys(data).length ? (
-          data
-            ?.filter((item) => !type || item.type === type)
 
-            .map((item) => <QrImg data={item} key={item.id} />)
-        ) : (
-          <>No passes available for this time period</>
-        )}
-      </div>
+      {loading ? (
+        <div className="flex h-[45%] items-center justify-center mt-5">
+          <BarLoader color="#8e4d0e" height={3} width={150} />
+        </div>
+      ) : (
+        <div className="flex items-center justify-start mt-5 overflow-x-scroll no-scrollbar px-5 gap-5">
+          {data && Object.keys(data).length ? (
+            data
+              ?.filter((item) => !type || item.type === type)
+              .map((item) => (
+                <QrImg
+                  data={item}
+                  key={item.id}
+                  setLoadingImage={setLoadingImage}
+                  loadingImage={loadingImage}
+                />
+              ))
+          ) : (
+            <div className="flex items-center">
+              No passes available for select dates.
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 }
