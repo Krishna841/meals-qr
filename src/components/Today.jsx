@@ -35,7 +35,6 @@ function Today({ setType, type, passId }) {
   return (
     <>
       <Meals setType={setType} />
-
       {loading ? (
         <div className="flex h-[45%] items-center justify-center mt-5">
           <BarLoader color="#8e4d0e" height={3} width={150} />
