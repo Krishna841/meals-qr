@@ -14,7 +14,6 @@ function Future({ setType, type, passId }) {
   const [end, setEnd] = useState(false);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
-  const [loadingImage, setLoadingImage] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -85,8 +84,6 @@ function Future({ setType, type, passId }) {
                 <QrImg
                   data={item}
                   key={item.id}
-                  setLoadingImage={setLoadingImage}
-                  loadingImage={loadingImage}
                 />
               ))
           ) : (

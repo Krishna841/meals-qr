@@ -1,7 +1,9 @@
 import { WhatsappShareButton } from "react-share";
 import WA from "../assets/wa-icon.svg";
+import { useState } from "react";
 
-function QrImg({ data, setLoadingImage, loadingImage }) {
+function QrImg({ data }) {
+  const [loadingImage, setLoadingImage] = useState(true);
   return (
     <div className="flex-shrink-0 snap-center items-center justify-center relative">
       <img

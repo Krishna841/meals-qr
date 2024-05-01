@@ -8,7 +8,6 @@ function Today({ setType, type, passId }) {
   const [data, setData] = useState();
 
   const [loading, setLoading] = useState(false);
-  const [loadingImage, setLoadingImage] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -48,8 +47,6 @@ function Today({ setType, type, passId }) {
                 <QrImg
                   data={item}
                   key={item.id}
-                  setLoadingImage={setLoadingImage}
-                  loadingImage={loadingImage}
                 />
               ))
           ) : (
